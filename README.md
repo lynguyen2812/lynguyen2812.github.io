@@ -1,2 +1,2 @@
 # nahha.github.io
-My personal website
+Learning github is 
