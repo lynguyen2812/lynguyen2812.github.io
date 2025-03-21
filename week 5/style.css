@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+h2 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.section-header {
+    color: #4a90e2;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+    margin: 30px 0 15px 0;
+}
+
+.experience-item {
+    margin-bottom: 20px;
+}
+
+.job-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.company-info {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+ul.job-duties {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+ul.skills-list {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 14px;
+}
