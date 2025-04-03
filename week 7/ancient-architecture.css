@@ -1,0 +1,134 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 16px;
+    background-color: #e2d7aa;
+
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #e2d7aa;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%;
+    margin: 30px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 20px;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #182621;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Header */
+header {
+    background-color: #e2d7aa;
+    padding: 20px 0;
+}
+
+h1 {
+    font-family: 'Indie Flower',cursive;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+header img {
+    width: 1100px;
+    height: 450px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Main Content */
+main {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #e2d7aa;
+}
+
+article {
+    width: 30%;
+    text-align: left;
+}
+
+article h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+article img {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+article p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+article p:first-letter {
+    font-family: 'EucrosiaUPC', sans-serif;
+    font-size: 40px;
+    color: #000;
+
+}
+
+article a {
+    font-size: 14px;
+    color: #800000;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+article a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: #e2d7aa;
+    padding: 10px 0 10px 0;
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+}
+
+/* Comment Link */
+article a::before {
+    content: url("img/comment.png");
+    position: relative;
+    top: 7px;
+    margin-right: 5px;
+    padding: 10px;
+}
