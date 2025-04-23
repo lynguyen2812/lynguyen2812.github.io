@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circle Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .calculator {
+      background-color: #f0f8ff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #1e90ff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #187bcd;
+    }
+    .results {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #e6f2ff;
+      border-radius: 4px;
+    }
+    h1 {
+      color: #333;
+    }
+    .error {
+      color: red;
+      display: none;
+      margin-top: 5px;
+    }
+    .circle-visual {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background-color: #b3d9ff;
+      margin: 20px auto;
+      position: relative;
+    }
+    .circle-visual::after {
+      content: "r";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(10px, -10px);
+      font-style: italic;
+    }
+    .circle-visual::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 1px;
+      background-color: #666;
+    }
+    .pi-note {
+      font-style: italic;
+      color: #666;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Circle Calculator</h1>
+  <div class="calculator">
+    <div class="circle-visual"></div>
+    
+    <div class="input-group">
+      <label for="radius">Radius:</label>
+      <input type="number" id="radius" placeholder="Enter radius" step="any">
+      <div class="error" id="radius-error">Please enter a valid positive number</div>
+    </div>
+    
+    <p class="pi-note">Using π = 3.14</p>
+    
+    <button onclick="calculate()">Calculate</button>
+    
+    <div class="results" id="results">
+      <p><strong>Circumference (Perimeter):</strong> <span id="circumference">-</span></p>
+      <p><strong>Area:</strong> <span id="area">-</span></p>
+    </div>
+  </div>
+
+  <script>
+    // Using pi = 3.14 as specified
+    const PI = 3.14;
+    
+    function calculate() {
+      // Get input value
+      const radius = parseFloat(document.getElementById('radius').value);
+      
+      // Reset error message
+      document.getElementById('radius-error').style.display = 'none';
+      
+      // Validate input
+      if (isNaN(radius) || radius <= 0) {
+        document.getElementById('radius-error').style.display = 'block';
+        return;
+      }
+      
+      // Calculate circumference and area
+      const circumference = 2 * PI * radius;
+      const area = PI * radius * radius;
+      
+      // Display results
+      document.getElementById('circumference').textContent = circumference.toFixed(2);
+      document.getElementById('area').textContent = area.toFixed(2);
+      
+      // Update visual representation
+      const circleVisual = document.querySelector('.circle-visual');
+      const size = Math.min(200, radius * 10);
+      circleVisual.style.width = `${size}px`;
+      circleVisual.style.height = `${size}px`;
+    }
+  </script>
+</body>
+</html>
