@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 500px;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        .header {
+            background-color: #2a6496;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+        }
+        .label {
+            text-align: right;
+            padding: 8px;
+            font-style: italic;
+            color: #703000;
+        }
+        .field {
+            padding: 5px;
+        }
+        input[type="text"], input[type="password"], select, textarea {
+            width: 100%;
+            padding: 5px;
+        }
+        textarea {
+            height: 80px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .button {
+            margin: 0 5px;
+            padding: 5px 15px;
+        }
+        .figure-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 20px;
+        }
+        .alert-box {
+            border: 1px solid #ccc;
+            width: 300px;
+            margin: 20px auto;
+            padding: 10px;
+            position: relative;
+        }
+        .alert-header {
+            background-color: #f0f0f0;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .alert-message {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .alert-button {
+            text-align: right;
+        }
+        .close-btn {
+            position: absolute;
+            right: 10px;
+            top: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form name="frmRegister" id="registrationForm" onsubmit="return formValid()">
+        <table>
+            <tr>
+                <td colspan="2" class="header">REGISTER NEW ACCOUNT</td>
+            </tr>
+            <tr>
+                <td class="label">Username</td>
+                <td class="field"><input type="text" id="username" name="txtUsername"></td>
+            </tr>
+            <tr>
+                <td class="label">Password</td>
+                <td class="field"><input type="password" id="password" name="txtPassword1"></td>
+            </tr>
+            <tr>
+                <td class="label">Confirm password</td>
+                <td class="field"><input type="password" id="confirmPassword" name="txtPassword2"></td>
+            </tr>
+            <tr>
+                <td class="label">Gender</td>
+                <td class="field">
+                    <input type="radio" id="male" name="gender" value="male" checked>
+                    <label for="male">Male</label>
+                    <input type="radio" id="female" name="gender" value="female">
+                    <label for="female">Female</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Phone</td>
+                <td class="field"><input type="text" id="phone" name="txtPhone"></td>
+            </tr>
+            <tr>
+                <td class="label">Email</td>
+                <td class="field"><input type="text" id="email" name="txtEmail"></td>
+            </tr>
+            <tr>
+                <td class="label">Favourite</td>
+                <td class="field">
+                    <input type="checkbox" id="music" name="chkMusic" value="music" checked>
+                    <label for="music">Music</label>
+                    <input type="checkbox" id="reading" name="chkReading" value="reading" checked>
+                    <label for="reading">Reading</label>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Picture</td>
+                <td class="field"><input type="file" id="picture" name="filPicture"></td>
+            </tr>
+            <tr>
+                <td class="label">Description</td>
+                <td class="field"><textarea id="description" name="txtDescription"></textarea></td>
+            </tr>
+            <tr>
+                <td class="label">Education level</td>
+                <td class="field">
+                    <select id="education" name="education">
+                        <option value="aptech">Aptech</option>
+                        <option value="college">College</option>
+                        <option value="university">University</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Language</td>
+                <td class="field">
+                    <select id="language" name="language" size="4" multiple>
+                        <option value="vietnamese" selected>Vietnamese</option>
+                        <option value="english">English</option>
+                        <option value="french">French</option>
+                        <option value="japanese">Japanese</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="button-container">
+                    <input type="submit" value="Register" class="button">
+                    <input type="reset" value="Reset" class="button">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <div id="emailAlert" class="alert-box" style="display: none;">
+        <div class="alert-header">JavaScript Alert <span class="close-btn">×</span></div>
+        <div class="alert-message">Invalid email address</div>
+        <div class="alert-button">
+            <button onclick="closeAlert('emailAlert')">OK</button>
+        </div>
+    </div>
+
+
+    <div id="successAlert" class="alert-box" style="display: none;">
+        <div class="alert-header">JavaScript Alert <span class="close-btn">×</span></div>
+        <div class="alert-message">All register information are correct.</div>
+        <div class="alert-button">
+            <button onclick="closeAlert('successAlert')">OK</button>
+        </div>
+    </div>
+
+    <script>
+        function formValid() {
+            f = document.frmRegister;
+            var phone_pattern = /^(\(\d{3,3}\)\d{7})|(0\d{9,10})$/;
+            var email_pattern = /^[a-zA-Z]\w*(\.\w+)*\@\w+(\.\w{2,3})+$/;
+            
+            if(f.txtUsername.value=="") {
+                alert("Username can't be empty");
+                f.txtUsername.focus();
+                return false;
+            }
+            
+            if(f.txtPassword1.value.length < 6) {
+                alert("Password length must be from 6 to 20 characters");
+                f.txtPassword1.focus();
+                return false;
+            }
+            
+            if(f.txtPassword1.value != f.txtPassword2.value) {
+                alert("Password doesn't match");
+                f.txtPassword2.focus();
+                return false;
+            }
+            
+            if(phone_pattern.test(f.txtPhone.value)==false) {
+                alert("Invalid phone number");
+                f.txtPhone.focus();
+                return false;
+            }
+            
+            if(email_pattern.test(f.txtEmail.value)==false) {
+                alert("Invalid email address");
+                f.txtEmail.focus();
+                return false;
+            }
+            
+            if(f.chkMusic.checked==false && f.chkReading.checked==false) {
+                alert("You must select at least one favourite");
+                f.chkMusic.focus();
+                return false;
+            }
+            
+            if(f.filPicture.value=="") {
+                alert("You must select your picture");
+                f.filPicture.focus();
+                return false;
+            }
+            
+            if(f.txtDescription.value=="") {
+                alert("You must enter description");
+                f.txtDescription.focus();
+                return false;
+            }
+            
+            alert("All register information are correct.");
+            return true;
+        }
+
+        function closeAlert(alertId) {
+            document.getElementById(alertId).style.display = 'none';
+        }
+    </script>
+</body>
+</html>
